@@ -205,7 +205,7 @@ function ProductsLoadedOnScroll({
     if (inView && hasNextPage) {
       navigate(nextPageUrl, {
         preventScrollReset: true,
-        replace: true,
+        replace: false,
         state,
       });
     }
