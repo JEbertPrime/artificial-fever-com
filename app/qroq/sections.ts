@@ -226,6 +226,21 @@ export const CAROUSEL_SECTION_FRAGMENT = {
   loop: q.boolean().nullable(),
   pagination: q.boolean().nullable(),
   settings: SECTION_SETTINGS_FRAGMENT,
+  collection: q('collection')
+    .deref()
+    .grab({
+      store: q('store').grab({
+        gid: q.string(),
+        slug: q
+          .object({
+            _type: q.literal('slug'),
+            current: q.string(),
+          })
+          .nullable(),
+        title: q.string(),
+      }),
+    })
+    .nullable(),
   slides: q('slides[]', {isArray: true})
     .grab({
       _key: q.string(),

@@ -41,7 +41,12 @@ export function FeaturedCollectionSection(
   return (
     <div className="container space-y-4">
       <div className="flex justify-between">
-        <h2>{props.data.heading || props.data.collection?.store.title}</h2>
+        <h2>
+          {' '}
+          <a href={'/collections/' + props.data.collection?.store.slug.current}>
+            {props.data.heading || props.data.collection?.store.title}
+          </a>
+        </h2>
         {props.data.viewAll && (
           <Button asChild className="hidden md:inline-flex" variant="ghost">
             <Link to={collectionHandle}>

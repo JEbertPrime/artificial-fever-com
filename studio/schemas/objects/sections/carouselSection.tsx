@@ -52,6 +52,12 @@ export default defineField({
       },
     }),
     defineField({
+      name: 'collection',
+      type: 'reference',
+      to: [{type: 'collection'}],
+    }),
+
+    defineField({
       name: 'slides',
       type: 'array',
       of: [
