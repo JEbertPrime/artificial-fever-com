@@ -38,7 +38,7 @@
     "@sanity/client": "^6.21.1",
     "@sanity/code-input": "^4.1.4",
     "@sanity/core-loader": "^1.6.20",
-    "@sanity/icons": "^2.11.8",
+    "@sanity/icons": "^3.4.0",
     "@sanity/image-url": "^1.0.2",
     "@sanity/react-loader": "^1.10.4",
     "@sanity/ui": "^2.8.8",
