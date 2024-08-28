@@ -58,7 +58,7 @@ export const createCspHeaders = () => {
   // Default CSP headers, will be used as a base for all environments
   const defaultsCSPHeaders = {
     connectSrc: ['*', "'self'"],
-    fontSrc: ['*.sanity.io', "'self'", 'localhost:*', 'cdn.sanity.io'],
+    fontSrc: ['*.sanity.io', "'self'", 'localhost:*'],
     frameAncestors: ['localhost:*', '*.sanity.studio'],
     frameSrc: ["'self'"],
     imgSrc: ['*.sanity.io', 'https://cdn.shopify.com', "'self'", 'localhost:*'],
