@@ -46,6 +46,7 @@ export function CollectionProductGridSection(
   const loaderData = useLoaderData<typeof loader>();
   const navigate = useNavigate();
   const {pathname} = useLocation();
+  
   const collectionProductGridPromise = loaderData?.collectionProductGridPromise;
   const columns = props.data.desktopColumns;
   const mobileColumns = props.data.mobileColumns;
