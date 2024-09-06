@@ -40,7 +40,7 @@ export default async function handleRequest(
   }
 
   responseHeaders.set('Content-Type', 'text/html');
-
+  responseHeaders.set('Access-Control-Allow-Origin', 'https://cdn.sanity.io')
   // Set CSP headers only for non-preview environments
   // to allow vercel preview feedback/comments feature
   const VERCEL_ENV = getVercelEnv();

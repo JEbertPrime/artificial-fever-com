@@ -155,6 +155,24 @@ function resolveFeaturedCollectionPromise({
       });
 
       promises.push(promise);
+    }else if(section._type === 'carouselSection'){
+      if(section.collection){
+        const gid = section.collection?.store.gid;
+        if (!gid) {
+          return undefined;
+        }
+        const promise = storefront.query(FEATURED_COLLECTION_QUERY, {
+          variables: {
+            country: storefront.i18n.country,
+            first:8,
+            id: gid,
+            language: storefront.i18n.language,
+          },
+        });
+  
+        promises.push(promise);
+  
+      }
     }
   }
 

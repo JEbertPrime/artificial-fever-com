@@ -150,7 +150,7 @@ export function CollectionProductGridSection(
                           mobile: mobileColumns,
                         }}
                         hasNextPage={hasNextPage}
-                        inView={true}
+                        inView={false}
                         nextPageUrl={nextPageUrl}
                         nodes={nodes}
                         onClearAllFilters={handleClearFilters}

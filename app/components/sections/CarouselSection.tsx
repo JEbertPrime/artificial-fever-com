@@ -153,7 +153,6 @@ function AwaitFeaturedCollection(props: {
     );
     return null;
   }
-  console.log(localPromise);
   return (
     <Suspense fallback={props.fallback}>
       <Await errorElement={props.error} resolve={localPromise}>
