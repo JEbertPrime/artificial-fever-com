@@ -174,6 +174,14 @@ export const COLLECTIONS_QUERY = `#graphql
         title
         description
         handle
+        products(first: 1){
+          nodes{
+            featuredImage {
+              ...ImageFragment
+            }
+          }
+          
+        } 
         seo {
           description
           title

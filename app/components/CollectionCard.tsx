@@ -62,7 +62,9 @@ export function CollectionCard(props: {
         ? 'justify-end'
         : 'justify-start',
   );
-
+  if(collection && !collection?.image){
+    collection.image = collection.products.nodes[0].featuredImage 
+  }
   return !skeleton && collection ? (
     <Link prefetch="intent" to={path}>
       <Card className={cardClass}>
