@@ -3,6 +3,7 @@ import type {ProductVariantFragmentFragment} from 'storefrontapi.generated';
 import {useSelectedVariant} from '~/hooks/useSelectedVariant';
 
 import {ShopifyMoney} from '../ShopifyMoney';
+import { pricesAreEqual } from '~/lib/utils';
 
 export function VariantPrice({
   variants,
@@ -15,7 +16,7 @@ export function VariantPrice({
 
   return (
     <>
-      {compareAtPrice && (
+      {(compareAtPrice && !pricesAreEqual(compareAtPrice,price)) && (
         <ShopifyMoney
           className=" text-muted-foreground line-through"
           data={compareAtPrice}

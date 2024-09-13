@@ -6,6 +6,8 @@ import {useSanityRoot} from '~/hooks/useSanityRoot';
 
 import {SanityImage} from '../sanity/SanityImage';
 
+import asciiLogo from '~/lib/asciiLogos'
+import { useEffect, useMemo, useState } from 'react';
 type Logo = InferType<typeof SETTINGS_FRAGMENT.logo>;
 
 export function Logo(props: {
@@ -19,11 +21,24 @@ export function Logo(props: {
   const sanitySettings = data?.settings;
   const logo = sanitySettings?.logo;
   const siteName = sanitySettings?.siteName;
-
+  const [logoResolution, setLogoResolution] = useState(0)
+  const [logoOpacity, setLogoOpacity] = useState(49)
+  const [logoShouldDarken, setLogoDarken] = useState(false)
+  useEffect(()=>{
+    const intId = setInterval(()=>{
+      //setLogoResolution((logoResolution +1)%3)
+      if(!((logoOpacity + (logoShouldDarken ? 1 : -1))% 46)){
+        setLogoDarken(!logoShouldDarken)
+      }
+      setLogoOpacity(logoOpacity + (logoShouldDarken ? 1 : -1))
+    },111)
+      return ()=>clearInterval(intId)
+    })
+  
   if (!logo?._ref) {
     return (
-      <div className="flex h-11 items-center justify-center font-heading text-2xl notouch:group-hover:decoration-dashed decoration-black">
-        {siteName}
+      <div className="flex  items-center justify-center font-heading text-[6px] notouch:group-hover:decoration-dashed decoration-black">
+        <AsciiLogo resolution={2} opacity={46 - logoOpacity} />
       </div>
     );
   }
@@ -46,4 +61,18 @@ export function Logo(props: {
       {...props}
     />
   );
+}
+const AsciiLogo = (props: {
+  className ? : string,
+  resolution?: number,
+  opacity?:number
+}) =>{
+  let {className, resolution, opacity} = props
+  resolution = resolution || 0
+  opacity = opacity || 0
+  const logo = asciiLogo[resolution ][opacity]
+
+  return <pre>
+    {logo}
+  </pre>
 }

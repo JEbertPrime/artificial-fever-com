@@ -7,7 +7,7 @@ import {cx} from 'class-variance-authority';
 
 import {useLocalePath} from '~/hooks/useLocalePath';
 import {useSanityRoot} from '~/hooks/useSanityRoot';
-import {cn} from '~/lib/utils';
+import {cn, pricesAreEqual} from '~/lib/utils';
 
 import {ShopifyImage} from '../ShopifyImage';
 import {ShopifyMoney} from '../ShopifyMoney';
@@ -111,7 +111,7 @@ export function ProductCard(props: {
                 {product.title}
               </div>
               <div className={priceClass}>
-                {firstVariant.compareAtPrice && (
+                {(firstVariant.compareAtPrice && (!pricesAreEqual(firstVariant.price, firstVariant.compareAtPrice))) && (
                   <ShopifyMoney
                     className="text-xs text-muted-foreground line-through md:text-sm"
                     data={firstVariant.compareAtPrice}

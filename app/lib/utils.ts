@@ -1,5 +1,5 @@
 import type {FulfillmentStatus} from '@shopify/hydrogen/customer-account-api-types';
-import type {SelectedOption} from '@shopify/hydrogen/storefront-api-types';
+import type {MoneyV2, SelectedOption} from '@shopify/hydrogen/storefront-api-types';
 import type {ClassValue} from 'class-variance-authority/types';
 import type {TypeFromSelection} from 'groqd';
 
@@ -153,4 +153,7 @@ export function statusMessage(
   } catch (error) {
     return status;
   }
+}
+export const pricesAreEqual = (price:MoneyV2, comparePrice:MoneyV2)=>{
+  return (price.amount == comparePrice.amount && price.currencyCode == comparePrice.currencyCode)
 }
