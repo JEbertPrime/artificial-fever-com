@@ -22,12 +22,12 @@ export function Logo(props: {
   const logo = sanitySettings?.logo;
   const siteName = sanitySettings?.siteName;
   const [logoResolution, setLogoResolution] = useState(0)
-  const [logoOpacity, setLogoOpacity] = useState(49)
+  const [logoOpacity, setLogoOpacity] = useState(30 )
   const [logoShouldDarken, setLogoDarken] = useState(false)
   useEffect(()=>{
     const intId = setInterval(()=>{
       //setLogoResolution((logoResolution +1)%3)
-      if(!((logoOpacity + (logoShouldDarken ? 1 : -1))% 46)){
+      if(!((logoOpacity + (logoShouldDarken ? 1 : -1))% 30)){
         setLogoDarken(!logoShouldDarken)
       }
       setLogoOpacity(logoOpacity + (logoShouldDarken ? 1 : -1))
@@ -38,7 +38,7 @@ export function Logo(props: {
   if (!logo?._ref) {
     return (
       <div className="flex  items-center justify-center font-heading text-[6px] notouch:group-hover:decoration-dashed decoration-black">
-        <AsciiLogo resolution={2} opacity={46 - logoOpacity} />
+        <AsciiLogo resolution={0} opacity={30 - logoOpacity} />
       </div>
     );
   }

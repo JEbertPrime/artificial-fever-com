@@ -45,7 +45,7 @@ export function MobileNavigation(props: {data?: NavigationProps}) {
           {props.data &&
             props.data?.length > 0 &&
             props.data?.map((item) => (
-              <li key={item._key}>
+              <li key={item._key} className='even:self-end'>
                 {item._type === 'internalLink' && (
                   <SanityInternalLink
                     className={mobileMenuLinkClass}
@@ -75,7 +75,7 @@ function MobileNavigationContent(props: {
     <DrawerContent
       className={cn([
         'h-[--dialog-content-height] max-h-screen w-screen bg-background p-0 text-foreground',
-        '[--dialog-content-height:calc(100svh_*_.75)] [--dialog-content-max-width:calc(32rem)]',
+        ' [--dialog-content-max-width:calc(32rem)]',
         'lg:left-auto lg:right-0 lg:max-w-[--dialog-content-max-width] lg:[--dialog-content-height:100svh]',
         props.className,
       ])}
@@ -85,7 +85,7 @@ function MobileNavigationContent(props: {
       <div className="mt-4 size-full overflow-hidden p-6">
         <ScrollArea className="size-full pr-4">
           <nav>
-            <ul className="flex flex-col gap-2 pb-6 text-xl font-medium">
+            <ul className="flex flex-col gap-2 pb-6 text-xl font-medium ">
               {props.children}
             </ul>
           </nav>
@@ -112,23 +112,11 @@ function MobileNavigationNested(props: {
   const {childLinks} = data;
 
   return data.name && childLinks && childLinks.length > 0 ? (
-    <DrawerNestedRoot
-      direction={device === 'desktop' ? 'right' : 'bottom'}
-      onOpenChange={setOpen}
-      open={open}
-    >
-      <DrawerTrigger className={mobileMenuLinkClass}>
+<>
         {data.name}
-        <span>
-          <IconChevron className="size-5" direction="right" />
-        </span>
-      </DrawerTrigger>
-      <MobileNavigationContent
-        className={cn([
-          'h-[calc(var(--dialog-content-height)*.95)]',
-          'lg:h-[--dialog-content-height] lg:max-w-[calc(var(--dialog-content-max-width)*.95)]',
-        ])}
-      >
+      
+       
+      <ul>
         {childLinks &&
           childLinks.length > 0 &&
           childLinks.map((child) => (
@@ -147,8 +135,8 @@ function MobileNavigationNested(props: {
               ) : null}
             </li>
           ))}
-      </MobileNavigationContent>
-    </DrawerNestedRoot>
+          </ul>
+          </>
   ) : data.link && data.name && (!childLinks || childLinks.length === 0) ? (
     // Render internal link if no child links
     <SanityInternalLink

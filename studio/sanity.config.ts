@@ -39,7 +39,7 @@ const SANITY_STUDIO_PRODUCTION_URL = isDev
 
 export default defineConfig({
   name: 'default',
-  title: 'Fluid',
+  title: 'ARTIFICIALFEVER',
   projectId,
   dataset,
   plugins: [

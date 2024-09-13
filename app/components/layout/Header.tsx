@@ -38,7 +38,10 @@ export function Header() {
     <HeaderWrapper>
       <style dangerouslySetInnerHTML={{__html: colorsCssVars}} />
       <div className="container">
-        <div className="flex items-center justify-between">
+        <div className="flex [&>*]:flex-1 items-center justify-between">
+          <DesktopNavigation data={header?.menu} />
+          <MobileNavigation data={header?.menu} />
+
           <Link className="group" prefetch="intent" to={homePath}>
             <Logo
               className="h-auto w-[var(--logoWidth)]"
@@ -50,12 +53,11 @@ export function Header() {
               }
             />
           </Link>
-          <div className="flex items-center">
-            <DesktopNavigation data={header?.menu} />
-            <AccountLink className="relative flex items-center justify-center focus:ring-primary/5" />
-            <CartDrawer />
-            <MobileNavigation data={header?.menu} />
-          </div>
+              <div className='flex justify-end'>
+              <AccountLink className="relative flex items-center justify-center focus:ring-primary/5" />
+          <CartDrawer />
+
+              </div>
         </div>
       </div>
     </HeaderWrapper>

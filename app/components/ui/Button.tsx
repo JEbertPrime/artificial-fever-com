@@ -9,7 +9,7 @@ import {cn} from '~/lib/utils';
 const buttonVariants = cva(
   [
     'inline-flex items-center font-semibold select-none justify-center whitespace-nowrap ring-offset-background transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
-    'rounded-[--button-border-corner-radius]',
+    
     '[box-shadow:rgb(var(--shadow)_/_var(--button-shadow-opacity))_var(--button-shadow-horizontal-offset)_var(--button-shadow-vertical-offset)_var(--button-shadow-blur-radius)_0px]',
   ],
   {
@@ -21,13 +21,13 @@ const buttonVariants = cva(
       size: {
         default: 'h-11 px-4 py-2',
         icon: 'size-11',
-        lg: 'h-12 rounded-md px-8',
+        lg: 'h-12  px-8',
         primitive: 'h-auto p-0',
-        sm: 'h-9 rounded-md px-3',
+        sm: 'h-9  px-3',
       },
       variant: {
         default:
-          'bg-primary text-primary-foreground notouch:hover:bg-primary/90 hover:active:bg-primary/80',
+          'bg-primary text-primary-foreground border notouch:hover:bg-primary/90 hover:active:bg-primary/80',
         destructive:
           'bg-destructive text-destructive-foreground notouch:hover:bg-destructive/90 hover:active:bg-destructive/80',
         ghost:
