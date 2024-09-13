@@ -29,7 +29,7 @@ export function ProductCard(props: {
   const {data} = stegaClean(useSanityRoot());
   const style = data?.settings?.productCards?.style;
   const textAlignment = data?.settings?.productCards?.textAlignment || 'left';
-  const aspectRatio = data?.settings?.productCards?.imageAspectRatio || 'video';
+  const aspectRatio = data?.settings?.productCards?.imageAspectRatio || 'auto';
   const variants = product?.variants?.nodes.length
     ? flattenConnection(product?.variants)
     : null;
@@ -44,8 +44,8 @@ export function ProductCard(props: {
 
   const cardClass = cn(
     style === 'card'
-      ? 'overflow-hidden rounded-[--product-card-border-corner-radius]'
-      : 'rounded-t-[calc(var(--product-card-border-corner-radius)*1.2)]',
+      ? 'overflow-hidden '
+      : '',
     style === 'card'
       ? 'border-[rgb(var(--border)_/_var(--product-card-border-opacity))] [border-width:--product-card-border-thickness]'
       : 'border-0',
@@ -80,7 +80,7 @@ export function ProductCard(props: {
                 className={cn(
                   'relative',
                   style === 'standard' &&
-                    'rounded-[--product-card-border-corner-radius]',
+                    '',
                   style === 'standard' &&
                     'border-[rgb(var(--border)_/_var(--product-card-border-opacity))] [border-width:--product-card-border-thickness]',
                   style === 'standard' &&

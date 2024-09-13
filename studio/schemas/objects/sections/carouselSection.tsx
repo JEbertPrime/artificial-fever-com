@@ -29,6 +29,11 @@ export default defineField({
       type: 'boolean',
     }),
     defineField({
+      type: 'aspectRatios',
+      name: 'mediaAspectRatio',
+    }),
+
+    defineField({
       name: 'arrows',
       title: 'Enable arrows navigation',
       type: 'boolean',

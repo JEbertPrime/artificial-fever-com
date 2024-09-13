@@ -225,6 +225,8 @@ export const CAROUSEL_SECTION_FRAGMENT = {
   autoplay: q.boolean().nullable(),
   loop: q.boolean().nullable(),
   pagination: q.boolean().nullable(),
+  mediaAspectRatio: z.enum(aspectRatioValues).nullable(),
+
   settings: SECTION_SETTINGS_FRAGMENT,
   collection: q('collection')
     .deref()
