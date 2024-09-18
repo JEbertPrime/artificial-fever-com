@@ -40,8 +40,8 @@ export function ImageBannerSection(
           data={data.backgroundImage}
           decoding="sync"
           draggable={false}
-          fetchpriority={section?.index === 0 ? 'high' : 'auto'}
-          loading={section?.index === 0 ? 'eager' : 'lazy'}
+          fetchpriority={section?.index <= 2 ? 'high' : 'auto'}
+          loading={section?.index <= 2 ? 'eager' : 'lazy'}
           showBorder={false}
           showShadow={false}
           sizes="100vw"

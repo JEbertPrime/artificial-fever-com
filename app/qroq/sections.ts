@@ -99,6 +99,8 @@ export const FEATURED_COLLECTION_SECTION_FRAGMENT = {
     })
     .nullable(),
   desktopColumns: q.number().nullable(),
+  mobileColumns: q.number().nullable(),
+
   heading: [getIntValue('heading'), q.string().nullable()],
   maxProducts: q.number().nullable(),
   settings: SECTION_SETTINGS_FRAGMENT,

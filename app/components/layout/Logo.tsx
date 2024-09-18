@@ -72,7 +72,7 @@ const AsciiLogo = (props: {
   opacity = opacity || 0
   const logo = asciiLogo[resolution ][opacity]
 
-  return <pre>
+  return <pre role='image' aria-label="The Artificial Fever logo rendered in ASCII art">
     {logo}
   </pre>
 }

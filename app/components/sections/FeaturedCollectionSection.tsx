@@ -37,7 +37,7 @@ export function FeaturedCollectionSection(
     path: `/collections/${props.data.collection?.store.slug?.current}`,
   });
   const {themeContent} = useSanityThemeContent();
-
+  console.log(props)
   return (
     <div className="container space-y-4">
       <div className="flex justify-between">
@@ -62,6 +62,7 @@ export function FeaturedCollectionSection(
               <ProductCardGrid
                 columns={{
                   desktop: props.data.maxProducts || 3,
+                  
                 }}
                 skeleton={{
                   cardsNumber: props.data.desktopColumns || 3,
@@ -76,6 +77,8 @@ export function FeaturedCollectionSection(
               <ProductCardGrid
                 columns={{
                   desktop: props.data.maxProducts || 3,
+                  mobile: props.data.maxProducts || 3,
+
                 }}
                 skeleton={{
                   cardsNumber: props.data.desktopColumns || 3,
@@ -90,6 +93,8 @@ export function FeaturedCollectionSection(
           <ProductCardGrid
             columns={{
               desktop: props.data.desktopColumns,
+              mobile: props.data.mobileColumns,
+
             }}
             products={products}
           />

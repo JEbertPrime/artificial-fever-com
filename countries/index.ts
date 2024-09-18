@@ -3,6 +3,15 @@ import type {I18nLocale, Localizations} from '../app/lib/type';
 
 export const countries: Localizations = {
   default: {
+    country: 'US',
+    currency: 'USD',
+    isoCode: 'en-us',
+    label: 'USA (USD $)',
+    language: 'EN',
+    languageLabel: 'English',
+    salesChannel: 'hydrogen',
+  },
+  '/ca': {
     country: 'CA',
     currency: 'CAD',
     isoCode: 'en-ca',

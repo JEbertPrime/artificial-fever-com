@@ -39,6 +39,17 @@ export default defineField({
       validation: (Rule: any) => Rule.required().min(1).max(5),
     }),
     defineField({
+      name: 'mobileColumns',
+      title: 'Number of columns on mobile',
+      type: 'rangeSlider',
+      options: {
+        min: 1,
+        max: 3,
+      },
+      validation: (Rule: any) => Rule.required().min(1).max(3),
+    }),
+
+    defineField({
       name: 'viewAll',
       type: 'boolean',
       title: 'View all button',
