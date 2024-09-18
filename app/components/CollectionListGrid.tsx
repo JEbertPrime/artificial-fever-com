@@ -9,6 +9,7 @@ import {CollectionCard} from './CollectionCard';
 export function CollectionListGrid(props: {
   collections?: CollectionsQuery['collections'];
   columns?: null | number;
+  mobileColumns?: null | number;
   skeleton?: {
     cardsNumber?: number;
   };
@@ -18,13 +19,19 @@ export function CollectionListGrid(props: {
     : [];
   const columnsVar = {
     '--columns': props.columns ?? 3,
+    '--mobile-columns': props.mobileColumns ?? 2,
+
   } as CSSProperties;
+ 
+
 
   return (
     <ul
       className={cx([
         'grid gap-x-[--grid-horizontal-space] gap-y-[--grid-vertical-space]',
         'lg:grid-cols-[repeat(var(--columns),_minmax(0,_1fr))]',
+        'grid-cols-[repeat(var(--mobile-columns),_minmax(0,_1fr))]',
+
       ])}
       style={columnsVar}
     >

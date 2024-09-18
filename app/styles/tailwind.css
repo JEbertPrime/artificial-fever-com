@@ -55,3 +55,17 @@
     font-size: calc(var(--heading-base-size) * 0.375 * 1px);
   }
 }
+@keyframes cursor-blink {
+  0% {
+    opacity: 0;
+  }
+}
+
+.blink::after {
+  content: "";
+  width: .25em;
+  height: .73em;
+  background: rgb(var(--foreground));
+  display: inline-block;
+  animation: cursor-blink 1.5s steps(2) infinite;
+}

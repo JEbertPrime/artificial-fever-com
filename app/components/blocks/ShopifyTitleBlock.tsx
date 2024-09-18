@@ -16,7 +16,7 @@ export function ShopifyTitleBlock(props: ShopifyTitleBlockProps) {
   if (!product) return null;
 
   return params.productHandle ? (
-    <h1>{product?.title}</h1>
+    <h1 className='text-lg'>{product?.title}</h1>
   ) : (
     <h2>{product?.title}</h2>
   );

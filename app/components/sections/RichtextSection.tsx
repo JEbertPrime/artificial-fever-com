@@ -3,7 +3,7 @@ import type {PortableTextBlock} from '@portabletext/types';
 import type {TypeFromSelection} from 'groqd';
 
 import {PortableText} from '@portabletext/react';
-import {useMemo} from 'react';
+import React, {useMemo} from 'react';
 
 import type {SectionDefaultProps} from '~/lib/type';
 import type {RICHTEXT_SECTION_FRAGMENT} from '~/qroq/sections';
@@ -49,7 +49,16 @@ export function RichtextSection(
               {props.children}
             </InternalLinkAnnotation>
           );
+
         },
+        animation:(props:{ 
+          children: React.ReactNode;
+          value:string;
+        })=>{
+          return<span className={props.value.animationName}>
+            {props.children}
+          </span>
+        }
       },
       types: {
         button: (props: {value: ButtonBlockProps}) => (

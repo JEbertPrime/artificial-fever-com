@@ -267,10 +267,10 @@ const CarouselPagination = React.forwardRef<
     useCarouselPagination(api);
 
   return (
-    <div className="mt-3 flex justify-center gap-2">
+    <div className="mt-3 m-auto flex w-fit justify-center gap-0 border ">
       {scrollSnaps.map((_, index) => (
         <Button
-          className={cn(className, 'p-1')}
+          className={cn(className, 'p-0.5')}
           key={index}
           onClick={() => onDotButtonClick(index)}
           ref={ref}
@@ -280,8 +280,9 @@ const CarouselPagination = React.forwardRef<
         >
           <span
             className={cn(
-              'aspect-square size-[10px] rounded-full border border-current opacity-85 transition-colors',
-              index === selectedIndex && 'bg-current',
+              'aspect-square h-[10px] w-[20px]  border-current border-l-0 border-r-0 bg-current opacity-20 transition-colors',
+              index <= selectedIndex && ' opacity-95',
+              index === selectedIndex && 'animate-pulse'
             )}
           />
         </Button>

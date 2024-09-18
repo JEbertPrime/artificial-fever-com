@@ -44,6 +44,8 @@ export function CollectionListSection(
           <div className="container">
             <CollectionListGrid
               columns={props.data.collections?.length || 2}
+              mobileColumns={props.data.collections?.length || 2}
+
               skeleton={{
                 cardsNumber: props.data.desktopColumns || 2,
               }}
@@ -58,6 +60,8 @@ export function CollectionListSection(
           <CollectionListGrid
             collections={collections}
             columns={props.data.desktopColumns}
+            mobileColumns={props.data.mobileColumns}
+
           />
         </div>
       )}

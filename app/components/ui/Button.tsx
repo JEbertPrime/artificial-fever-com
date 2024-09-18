@@ -27,7 +27,7 @@ const buttonVariants = cva(
       },
       variant: {
         default:
-          'bg-primary text-primary-foreground border notouch:hover:bg-primary/90 hover:active:bg-primary/80',
+          'bg-background text-primary-foreground border notouch:hover:bg-background/90 hover:active:bg-primary/80',
         destructive:
           'bg-destructive text-destructive-foreground notouch:hover:bg-destructive/90 hover:active:bg-destructive/80',
         ghost:

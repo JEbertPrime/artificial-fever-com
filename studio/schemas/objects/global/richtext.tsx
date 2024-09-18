@@ -26,6 +26,23 @@ export default defineField({
         ],
         annotations: [
           {
+            name: 'animation',
+            type:'object',
+            fields:[
+              defineField({
+                name:'animationName',
+                type:'string',
+                title:"Animation Name",
+                options:{
+                  list:[
+                    {title:"Cursor Blink", value:"blink"},
+                    {title: "Typewriter", value:"typewriter"}
+                  ]
+                }
+              })
+            ]
+          },
+          {
             name: 'internalLink',
             type: 'object',
             title: 'Internal link',

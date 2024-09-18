@@ -100,7 +100,7 @@ function MobileCarousel({
 
   return (
     <Carousel
-      className="[--slide-size:100%] [--slide-spacing:1rem] lg:hidden"
+      className="[--slide-size:100%] md:[--slide-size:75%] [--slide-spacing:1rem] lg:hidden"
       opts={{
         active: isActive && device !== 'desktop',
       }}
@@ -110,7 +110,7 @@ function MobileCarousel({
           {medias.map((media, index) => {
             return (
               <CarouselItem
-                className="last:pr-[--slide-spacing] [&>span]:h-full"
+                className="last:pr-[--slide-spacing] first:pl-[calc(var(--slide-spacing)_*_2)] [&>span]:h-full [--slide-size:100%] flex-[0_0_90%]" 
                 key={media.id}
               >
                 {media.__typename === 'MediaImage' && media.image && (

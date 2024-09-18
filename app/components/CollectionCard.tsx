@@ -27,7 +27,7 @@ export function CollectionCard(props: {
   const textAlignment =
     data?.settings?.collectionCards?.textAlignment || 'left';
   const aspectRatio =
-    data?.settings?.collectionCards?.imageAspectRatio || 'video';
+    data?.settings?.collectionCards?.imageAspectRatio || 'square';
   const sizes = cx([
     '(min-width: 1024px)',
     props.columns ? `${100 / props.columns}vw,` : '33vw,',

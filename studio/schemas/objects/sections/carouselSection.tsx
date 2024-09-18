@@ -57,6 +57,14 @@ export default defineField({
       },
     }),
     defineField({
+      name: 'slidesPerViewMobile',
+      type: 'rangeSlider',
+      options: {
+        min: 1,
+        max: 10,
+      },
+    }),
+    defineField({
       name: 'collection',
       type: 'reference',
       to: [{type: 'collection'}],
