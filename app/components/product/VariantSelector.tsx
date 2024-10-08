@@ -37,17 +37,16 @@ export function VariantSelector(props: {
   variants?: Array<PartialDeep<ProductVariantFragmentFragment>>;
 }) {
   const selectedVariant = useSelectedVariant({variants: props.variants});
-
   const options = useMemo(
     () =>
       props.options
-        ?.filter((option) => option?.values && option.values?.length > 1)
+        ?.filter((option) => option?.optionValues && option.optionValues?.length > 1)
         .map((option) => {
           let activeValue;
           const optionValues: VariantOptionValue[] = [];
           const variantSelectedOptions = selectedVariant?.selectedOptions;
 
-          for (const value of option?.values ?? []) {
+          for (const value of option?.optionValues ?? []) {
             const valueIsActive =
               value ===
               variantSelectedOptions?.find(
@@ -97,7 +96,7 @@ export function VariantSelector(props: {
             values: optionValues,
           };
         }),
-    [props.options, selectedVariant, props.variants],
+    [props, selectedVariant, props.variants],
   );
 
   return options?.map((option) => (
@@ -159,6 +158,7 @@ function Pills(props: {
   return (
     <div className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-3">
       {values.map((value) => (
+        console.log(value)
         <Pill
           handle={props.handle}
           key={value.value}

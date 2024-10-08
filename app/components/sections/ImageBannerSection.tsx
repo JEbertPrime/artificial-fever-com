@@ -36,7 +36,7 @@ export function ImageBannerSection(
     <Banner height={data.bannerHeight}>
       <BannerMedia>
         <SanityImage
-          aspectRatio="16/9"
+          aspectRatio="original"
           data={data.backgroundImage}
           decoding="sync"
           draggable={false}
