@@ -47,6 +47,7 @@ export function useColorsCssVars(props: {
 
   return `
     ${selector} {
+    ${data.settings.colorSwatches.map(swatch=>`--${swatch.colorName.replace(' ', '-')}: ${swatch.color.hex}`).join(';')};
       --accent: ${getMutedColor(colorScheme.primary?.rgb, colorScheme.background?.rgb, 0.85)};
       --accent-foreground: ${toRgbString(colorScheme.primary?.rgb)};
       --background: ${toRgbString(colorScheme.background?.rgb)};

@@ -1,7 +1,6 @@
 import {defineArrayMember, defineField, defineType} from 'sanity';
 import {getAllLocales} from '../../../countries';
 import {setShowTrailingZeroKeyValue} from '../../../app/lib/utils';
-
 const GROUPS = [
   {
     name: 'brand',
@@ -37,6 +36,9 @@ const GROUPS = [
   {
     name: 'socialMedia',
   },
+  {
+    name: 'colorSwatches'
+  }
 ];
 
 export default defineType({
@@ -382,6 +384,17 @@ export default defineType({
       name: 'vimeo',
       type: 'url',
       group: 'socialMedia',
+    }),
+    defineField({
+      name: 'colorSwatches',
+      type: 'array',
+      of: [
+        {
+          title: 'Custom Color',
+          type: 'colorSwatch'
+        }
+      ],
+      group: 'colorSwatches',
     }),
   ],
   preview: {

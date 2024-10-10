@@ -14,23 +14,20 @@ import {useOptimisticNavigationData} from '~/hooks/useOptimisticNavigationData';
 import {useSelectedVariant} from '~/hooks/useSelectedVariant';
 
 import {useSection} from '../CmsSection';
+import { ProductOptionValue } from '@shopify/hydrogen-react/storefront-api-types';
 
 export type VariantOptionValue = {
   isActive: boolean;
   isAvailable: boolean;
-  search: string;
-  value: string;
+  search: string; 
+  value: ProductOptionValue;
 };
 
 export function VariantSelector(props: {
   options:
     | (
-        | PartialObjectDeep<
-            ProductOption,
-            {
-              recurseIntoArrays: true;
-            }
-          >
+        | 
+            ProductOption
         | undefined
       )[]
     | undefined;
@@ -45,18 +42,16 @@ export function VariantSelector(props: {
           let activeValue;
           const optionValues: VariantOptionValue[] = [];
           const variantSelectedOptions = selectedVariant?.selectedOptions;
-
           for (const value of option?.optionValues ?? []) {
             const valueIsActive =
-              value ===
+             ( value?.name ===
               variantSelectedOptions?.find(
-                (selectedOption) => selectedOption.name === option?.name,
-              )?.value;
-
+                (selectedOption:{name:string, value:string}) => selectedOption.name === option?.name,
+              )?.value )
             if (valueIsActive) {
               activeValue = value;
             }
-
+            
             const newOptions = variantSelectedOptions?.map((selectedOption) => {
               if (selectedOption.name === option?.name) {
                 return {
@@ -64,16 +59,15 @@ export function VariantSelector(props: {
                   value,
                 };
               }
-
               return selectedOption;
             });
-
+            console.log('Product options:' , newOptions)
             const matchedVariant = props.variants?.find((variant) =>
               variant?.selectedOptions?.every((selectedOption) => {
                 return newOptions?.find(
                   (newOption) =>
                     newOption.name === selectedOption.name &&
-                    newOption.value === selectedOption.value,
+                    (newOption.value === selectedOption.value || newOption.value?.name === selectedOption.value),
                 );
               }),
             );
@@ -96,13 +90,13 @@ export function VariantSelector(props: {
             values: optionValues,
           };
         }),
-    [props, selectedVariant, props.variants],
+    [props.options, selectedVariant, props.variants],
   );
-
+  console.log(options)
   return options?.map((option) => (
     <div key={option.name}>
       <div>{option.name}</div>
-      <Pills handle={selectedVariant?.product?.handle} option={option} />
+      <Pills handle={selectedVariant?.product?.handle}  option={option} />
     </div>
   ));
 }
@@ -111,7 +105,7 @@ function Pills(props: {
   handle: string | undefined;
   option: {
     name: string | undefined;
-    value: string | undefined;
+    value: ProductOptionValue | undefined;
     values: VariantOptionValue[];
   };
 }) {
@@ -121,11 +115,10 @@ function Pills(props: {
     useOptimisticNavigationData<string>(optimisticId);
 
   let values = props.option.values;
-
   if (optimisticData) {
     // Replace the active value with the optimistic value
     const optimisticValues = values.map((value) => {
-      if (value.value === optimisticData) {
+      if (value.value.name === optimisticData) {
         return {
           ...value,
           isActive: true,
@@ -154,14 +147,13 @@ function Pills(props: {
     },
     [navigate, optimisticId],
   );
-
   return (
     <div className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-3">
       {values.map((value) => (
-        console.log(value)
         <Pill
           handle={props.handle}
-          key={value.value}
+          key={value.value.name}
+          
           onSelectVariant={handleSelectVariant}
           option={props.option}
           pending={pending}
@@ -184,7 +176,7 @@ function Pill(props: {
   };
   pending: boolean;
   search: string;
-  value: string;
+  value: ProductOption;
 }) {
   const {
     handle,
@@ -196,18 +188,20 @@ function Pill(props: {
     search,
     value,
   } = props;
+  const isColor = option.name?.toLowerCase() == 'color'
   const isHydrated = useIsHydrated();
   const section = useSection();
   const layoutId = handle! + option.name + section?.id;
-
   const buttonClass = cx([
     'select-none rounded-full py-[.375rem] text-sm font-medium disabled:cursor-pointer',
     'focus-visible:outline-none focus-visible:outline-2 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
+    isColor ? 'aspect-square w-4 h-4 ' :'', 
+
   ]);
-  const bubbleClass = cx(['absolute inset-0 z-0 bg-accent']);
+  const bubbleClass = cx([isColor ? 'hidden': '']);
   const foregroundClass = cx([
     'inline-flex items-center relative z-[2] justify-center whitespace-nowrap px-3 py-1.5 transition-colors notouch:hover:text-accent-foreground',
-    isActive && 'text-accent-foreground',
+    isActive && 'text-accent-foreground border-b-2 border-black ',
     !isAvailable && 'opacity-50',
   ]);
 
@@ -220,7 +214,7 @@ function Pill(props: {
       disabled={pending}
       layout
       layoutRoot
-      onClick={() => onSelectVariant(value, search)}
+      onClick={() => onSelectVariant(value.name, search)}
       style={{
         WebkitTapHighlightColor: 'transparent',
       }}
@@ -238,19 +232,20 @@ function Pill(props: {
           className={foregroundClass}
           tabIndex={-1}
           whileTap={{scale: 0.9}}
+          style={{background: `var(--${value.name.replace(' ', '-')})`}}
         >
-          {value}
+          {option.name?.toLowerCase() == 'color' || value.name}
         </m.span>
       </span>
     </m.button>
   ) : (
-    <Link className={buttonClass} to={search}>
-      <span className="relative block h-8">
+    <Link className={buttonClass} to={search} >
+      <span className="relative block h-8" style={{background: `var(--${value.name.replace(' ', '-')})`}}>
         {isActive && (
           <span className={bubbleClass} style={{borderRadius: 9999}} />
         )}
         <span className={foregroundClass} tabIndex={-1}>
-          {value}
+          {option.name?.toLowerCase() == 'color' || value.name}
         </span>
       </span>
     </Link>

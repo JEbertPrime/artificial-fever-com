@@ -215,6 +215,7 @@ export const SETTINGS_FRAGMENT = {
   twitter: q.string().nullable(),
   vimeo: q.string().nullable(),
   youtube: q.string().nullable(),
+  colorSwatches: q.array().nullable()
 } satisfies Selection;
 
 /*

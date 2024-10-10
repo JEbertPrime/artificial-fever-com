@@ -1,4 +1,5 @@
 import color from './documents/color';
+import colorSwatch from './documents/colorSwatch'
 import footer from './singletons/footer';
 import header from './singletons/header';
 import page from './documents/page';
@@ -51,6 +52,7 @@ const singletons = [home, header, footer, settings, themeContent];
 const documents = [
   page,
   color,
+  colorSwatch,
   collection,
   product,
   productTemplate,

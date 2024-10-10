@@ -69,3 +69,15 @@
   display: inline-block;
   animation: cursor-blink 1.5s steps(2) infinite;
 }
+.FADED-BLACK{
+  background: darkgray
+}
+.ICE-GREY{
+  background:gray
+}
+.DARK-NAVY{
+  background: navy
+}
+.PINK{
+  background: pink
+}

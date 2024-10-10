@@ -17,7 +17,6 @@ export function ProductForm(
   const showQuantitySelector = props.quantitySelector;
 
   if (!product) return null;
-  console.log(product)
   if (variantsContextData?.variants) {
     return (
       <div className="grid gap-4">

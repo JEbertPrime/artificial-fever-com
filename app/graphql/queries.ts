@@ -36,6 +36,14 @@ query Product(
     options {
       name
       values
+      optionValues {
+        id
+        name
+        swatch {
+          color
+          
+        }
+      }
     }
     media(first: 7) {
       nodes {
